@@ -1,4 +1,4 @@
-import { Hotel } from "@/types";
+import { Hotel } from "@/types/hotel";
 import InfoHotel from "./InfoHotel";
 
 const getPreviewHotelBooking = async (): Promise<Hotel[] | null> => {
@@ -17,7 +17,7 @@ const PreviewBooking = async () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 mt-8 p-3">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 mt-8 p-3">
         <InfoHotel hotels={hotels} />
       </div>
     </>
