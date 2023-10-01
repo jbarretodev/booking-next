@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ["https://sandbox.bookingcore.co", "sandbox.bookingcore.co"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

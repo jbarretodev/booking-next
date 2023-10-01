@@ -13,20 +13,20 @@ export type DetailHotel = {
 export type HotelData = {
   id?: number;
   object_model?: string;
-  title?: string;
+  title: string;
   price?: string;
   sale_price?: number;
   discount_percent?: number;
   image?: string;
-  content?: string;
+  content: string;
   location?: string;
   is_featured?: number;
   address?: string;
-  map_lat?: string;
-  map_lng?: string;
+  map_lat: string;
+  map_lng: string;
   map_zoom?: number;
-  banner_image?: string;
-  gallery?: string[];
+  banner_image: string;
+  gallery: string[];
   video?: string;
   enable_extra_price?: number;
   extra_price?: ExtraPrice[];
@@ -62,7 +62,6 @@ export type Policy = {
   title?: string;
   content?: string;
 };
-
 
 export type Related = {
   id?: number;
@@ -163,7 +162,6 @@ export type Parent = {
   display_type?: string;
   hideIn_single?: string;
 };
-
 
 export type ServiceHotel = {
   total?: number;

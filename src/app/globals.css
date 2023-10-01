@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .title_h1{
-  @apply bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500;
-} */
 body {
-  @apply bg-white text-black;
+    @apply bg-white text-black;
+}
+
+h4 {
+    @apply text-2xl font-bold mb-5 mt-5;
+}
+
+ul {
+    @apply list-disc pl-5 mb-5;
 }

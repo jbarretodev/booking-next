@@ -1,14 +1,6 @@
 import { Hotel } from "@/types/hotel";
 import InfoHotel from "./InfoHotel";
-
-const getPreviewHotelBooking = async (): Promise<Hotel[] | null> => {
-  let rs;
-  await fetch("https://sandbox.bookingcore.co/api/hotel/search")
-    .then((response) => response.json() as Promise<{ data: Hotel[] }>)
-    .then((data) => (rs = data.data));
-
-  return rs ?? null;
-};
+import { getPreviewHotelBooking } from "@/api/requestBooking";
 
 const PreviewBooking = async () => {
   const hotels: Hotel[] | null = await getPreviewHotelBooking();

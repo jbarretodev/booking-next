@@ -1,5 +1,7 @@
 import { Hotel } from "@/types/hotel";
 import Link from "next/link";
+import Image from "next/image";
+
 const InfoHotel = ({ hotels }: { hotels: Hotel[] }) => {
   return (
     <>
@@ -8,11 +10,17 @@ const InfoHotel = ({ hotels }: { hotels: Hotel[] }) => {
           key={hotel.id}
           className="bg-white rounded-lg hover:shadow-xl shadow-md overflow-hidden"
         >
-          <img src={hotel.image} alt={hotel.title} />
+          <Image
+            src={hotel.image}
+            alt={hotel.title}
+            height={500}
+            width={500}
+            loading="lazy"
+          />
           <hr />
           <div className="px-4 py-2">
             <Link href={`/hotel/${hotel.title}`}>
-              <h1 className="text-2xl text-center mt-3 mb-3 font-bold">
+              <h1 className="text-2xl text-center mt-3 mb-3 font-bold hover:underline">
                 {hotel.title}
               </h1>
             </Link>
@@ -30,9 +38,11 @@ const InfoHotel = ({ hotels }: { hotels: Hotel[] }) => {
               <span className="font-bold">Price: </span>${hotel.price}
             </p>
 
-            <button className="bg-cyan-600 px-4 py-2 text-white rounded-md">
-              Info
-            </button>
+            <Link href={`/hotel/${hotel.title}`}>
+              <button className="bg-cyan-600 px-4 py-2 text-white rounded-md">
+                Info
+              </button>
+            </Link>
           </div>
         </div>
       ))}

@@ -1,49 +1,27 @@
-"use client";
-import Gallery from "@/components/Gallery";
-import RatingStar from "@/components/RatingStar";
-import { DetailHotel, Hotel, HotelData, ServiceHotel } from "@/types/hotel";
-import { Card, Rating } from "flowbite-react";
-const getServiceHotel = (title: string) => {
-  return fetch(
-    `https://sandbox.bookingcore.co/api/hotel/search?service_name=${title}`
-  )
-    .then((response) => response.json() as Promise<{ data: ServiceHotel }>)
-    .then((data) => {
-      return data.data as Hotel[];
-    });
-};
-
-const getDetailHotel = (id: number): Promise<HotelData> => {
-  return fetch(`https://sandbox.bookingcore.co/api/hotel/detail/${id}`)
-    .then((response) => response.json() as Promise<{ data: DetailHotel }>)
-    .then((data) => {
-      return data.data as HotelData;
-    });
-};
+import CardHotel from "@/components/CardHotel";
+import { getDetailHotel, getServiceHotel } from "@/api/requestBooking";
+import Image from "next/image";
 
 const HotelDetailPage = async ({ params }: { params: { service: string } }) => {
   const serviceHotel = await getServiceHotel(params.service);
-  const detailtHotel = await getDetailHotel(serviceHotel[0].id);
-  console.log(detailtHotel.gallery);
+  const detailHotel = await getDetailHotel(serviceHotel[0].id);
+
   return (
     <>
       <main>
         <section className="mt-12">
-          <img src={detailtHotel.banner_image} alt={detailtHotel.title} />
+          {detailHotel.title && detailHotel.banner_image && (
+            <Image
+              src={detailHotel.banner_image}
+              alt={detailHotel.title}
+              width={1534}
+              height={484.41}
+            />
+          )}
         </section>
 
         <section className="flex pb-10 flex-col border-black items-center justify-center mt-12">
-          <Card className="w-3/4">
-            <RatingStar stars={Number(detailtHotel.star_rate)} />
-            <h1 className="text-xl text-left font-bold">
-              {detailtHotel.title}
-            </h1>
-            <span className="">{detailtHotel.address}</span>
-            <Gallery
-              pathImages={detailtHotel.gallery}
-              title={detailtHotel.title}
-            />
-          </Card>
+          <CardHotel detailHotel={detailHotel} />
         </section>
       </main>
     </>
